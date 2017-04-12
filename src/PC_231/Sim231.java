@@ -14,43 +14,44 @@ public class Sim231 {
    CPU CPU = new CPU();
    
    ALU ALU = new ALU();
+
+   int r =0;
+   String str;
    
-   int[] r1 = CPU.register();
-   
- public void run(){
+ public void run(String instruction){ //two or three char instructions
      
-        char input = '0';
+        char input = instruction.charAt(0);
         
         switch (input) {
             case '0':  ALU.Halt();
                      break;
-            case '1':  ALU.zero(r1);
+            case '1':  ALU.zero(r);
                      break;
-            case '2': ALU.set(r1,r1);
+            case '2': ALU.set(r,r);
                      break;
-            case '3':  ALU.data(r1, r1);
+            case '3':  ALU.data(r, r);
                      break;
-            case '4':  ALU.INC(r1);
+            case '4':  ALU.INC(r,r);
                      break;
-            case '5':  ALU.Shift(r1);
+            case '5':  ALU.Shift(r,r);
                      break;
-            case '6':  ALU.add(r1, r1);
+            case '6':  ALU.add(r, r);
                      break;
-            case '7': ALU.sub(r1, r1);
+            case '7': ALU.sub(r, r);
                      break;
-            case '8':  ALU.and(r1, r1);
+            case '8':  ALU.and(r, r);
                      break;
-            case '9':  ALU.copy(r1, r1);
+            case '9':  ALU.copy(r, r);
                      break;
-            case 'A': ALU.load(r1, r1);
+            case 'A': ALU.load(r, r);
                      break;
-            case 'B': ALU.store(r1, r1);
+            case 'B': ALU.store(r, r);
                      break;
-            case 'C': ALU.read(r1);
+            case 'C': ALU.read(r, str);
                      break;
-            case 'D': ALU.write(r1);
+            case 'D': ALU.write(r, str);
                      break;
-            case 'E': ALU.JPIF(r1);
+            case 'E': ALU.JPIF(r);
                      break;
             case 'F': ALU.jump();
                      break;
