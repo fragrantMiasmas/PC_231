@@ -10,7 +10,10 @@ package PC_231;
  * @author ElizabethReed PC
  */
 public class ALU {
-
+    
+    int[] reg = new int[16]; //4 bits, 2^4 = 16
+    int[] RAM = new int[256];
+    
     IOdevice IOD = new IOdevice();
     
     //Halts the machine
@@ -19,18 +22,18 @@ public class ALU {
     }
     
     //	Zeroes (or "clears") out register RRRR
-    public void zero(int RR){
-        RR = 0;
+    public int zero(int RR){
+        reg[RR] = 0;
+        return reg[RR];
     }
     
     //	Sets the 4 lowest-order bits of register RRRR to BBBB
     public int set(int RR, int BB){
-//        for(int i=RR.length; i>RR.length-4; i--){
-//            int j = 0;
-//            RR[i] = BB[j]; //change details later
-//            j++;
-//        }
-        return RR;
+        // mask first 28 bits of int
+        
+        //set lower 4 bits
+        
+        return reg[RR];
         
     }
     
@@ -41,36 +44,40 @@ public class ALU {
     }
     
     //	Adds or subtracts from 1 to 8 from register RRRR
-    public void INC(int RR, int NN){
-        
+    public int INC(int RR, int NN){ //increment
+        reg[RR] = reg[RR]-NN;
+        return reg[RR];
     }
     
     //Shifts register RRRR left (-) or right (+) by from 1 to 8 bits
-    public void Shift(int RR, int NN){
-       RR = RR >> NN;
+    public int Shift(int RR, int NN){
+       reg[RR] = reg[RR] >> NN;
+       return reg[RR];
     }
     
     //Adds the contents of register RRR1 to RRR2 (result in RRR2)
     public int add(int R1, int R2){
-        R2 = R2 + R1;
-        return R2;
+        reg[R2] = reg[R2] + reg[R1];
+        return reg[R2];
     }
     
     //	Subtracts the contents of register RRR1 from RRR2 (result in RRR2) 
     public int sub(int R1, int R2){
-        R2 = R2 -R1;
-        return R2;
+        reg[R2] = reg[R2] - reg[R1];
+        return reg[R2];
     }
     
     //	Logically ANDs the contents of register RRR1 into RRR2 (result in RRR2)
-    public int and(int R1, int R2){      
-       R2 = R1 & R2;
-       return R2;
+    public int and(int R1, int R2){  
+        
+       
+       reg[R2] = reg[R1] & reg[R2];
+       return reg[R2];
     }
     
     //Copies the contents of register RRR1 to RRR2
     public void copy(int R1, int R2){
-        R2 = R1;
+        reg[R2] = reg[R1];
     }
     
     //	Loads the contents of location addressed by RRR2 into register RRR1
@@ -101,6 +108,6 @@ public class ALU {
     
     //  Jump directly to the location whose address is AAAA AAAA
     public void jump(){
-        
+        int AA;
     }
 }
