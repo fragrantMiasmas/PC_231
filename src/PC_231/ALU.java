@@ -91,13 +91,13 @@ public class ALU {
     }
     
     //  Reads a value (up to 12 bits) into register RRRR from device DDDD
-    public void read(int RR, String Device){
+    public void read(int RR, int Device){
         IOD.device(RR, Device);
         System.out.println(RR);
     }
     
     //  Writes a value (up to 12 bits) from register RRRR to device DDDD
-    public void write(int RR, String Device){
+    public void write(int RR, int Device){
         IOD.device(RR, Device);
     }
     

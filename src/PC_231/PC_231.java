@@ -16,6 +16,8 @@ public class PC_231 {
      */
     public static void main(String[] args) {
         
+        Assembler asm = new Assembler();
+        
         int bitmask = 0x000F;
         System.out.println("bitmask = " + bitmask);
         
@@ -31,5 +33,11 @@ public class PC_231 {
         
         int and4 = and>>>1;
         System.out.println(and4);
+        
+        //program below
+        
+        String instructions = "READ r0,d2";
+        asm.assemble(instructions);
+        
     }   
 }

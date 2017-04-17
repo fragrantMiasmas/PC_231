@@ -28,7 +28,7 @@ public class Sim231 {
         int r2 = instruction.charAt(2);
         int bb = instruction.charAt(2);
         int nn = instruction.charAt(2);
-        String device= instruction; //last 2 chars
+        int device= instruction.charAt(3); //last 2 chars
         
         switch (input) {
             case '0':  ALU.Halt();
