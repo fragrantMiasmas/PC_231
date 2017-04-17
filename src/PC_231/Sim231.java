@@ -29,6 +29,7 @@ public class Sim231 {
         int bb = instruction.charAt(2);
         int nn = instruction.charAt(2);
         int device= instruction.charAt(3); //last 2 chars
+        int a2 = instruction.charAt(2);
         
         switch (input) {
             case '0':  ALU.Halt();
@@ -59,9 +60,9 @@ public class Sim231 {
                      break;
             case 'D': ALU.write(r1, device);
                      break;
-            case 'E': ALU.JPIF(r1);
+            case 'E': ALU.JPIF(r1, r1,r1);
                      break;
-            case 'F': ALU.jump();
+            case 'F': ALU.jump(aa, a2);
                      break;
             default: System.out.println("Invalid input");;
                      break;
