@@ -19,7 +19,7 @@ public class Assembler {
         //example input : READ r0,d2    
         // \\s for spaces
         // () for groups
-        Pattern p = Pattern.compile("(\\w{3,}) \\s (\\w{1} \\d{1}) \\s (\\w{1} \\d{1})");
+        Pattern p = Pattern.compile("(\\w{3,}) \\s (\\w{1} \\d{1}) (\\s|\\^w) (\\w{1} \\d{1})");
         Matcher m = p.matcher(instructions);
         System.out.println("group 2" + m.group());
         //whenever semicolon occurs, split

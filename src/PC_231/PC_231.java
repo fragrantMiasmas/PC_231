@@ -36,7 +36,7 @@ public class PC_231 {
         
         //program below
         
-        String instructions = "READ r0,d2";
+        String instructions = "READ r0 d2";
         asm.assemble(instructions);
         
     }   
