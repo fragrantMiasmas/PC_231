@@ -36,15 +36,12 @@ public class PC_231 {
 //        System.out.println(and4);
         
         //program below
-        
-//        String instructions = "READ r0 d2";
-//        asm.assemble(instructions);
 
 //           String input = "201 600 600";
          String input = "302";
 //         sim.run(input);
 
-         String instr = "READ r0,d2";
+         String instr = "READ r0,dd; WRITE r0,hd; ADD r5,dd";
          asm.assemble(instr);
         
     }   

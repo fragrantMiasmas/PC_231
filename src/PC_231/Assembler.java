@@ -18,7 +18,7 @@ public class Assembler {
         StringBuilder sb = new StringBuilder();
         //example input : READ r0 d2;  WRITE r1 d2
        //whenever semicolon occurs, split
-        for (String hexblock: instructions.split(";")) {
+        for (String hexblock: instructions.split("; " )) { //includes a space
             System.out.println(hexblock);
             StringBuilder subsb = parseAlt(hexblock);
             sb.append(subsb);
@@ -33,21 +33,31 @@ public class Assembler {
         StringBuilder sb = new StringBuilder();  
         //first work it READ
         String[] hexinstr = hexblock.split(" ");  //encounter a space
-//            System.out.println(hexinstr);
             char tableval = hex(hexinstr[0]); //read becomes c
             sb.append(tableval);
             
              //register inputs ie r0,d2
         for (String codeblock: hexinstr[1].split(",")) { //encounter a comma
-//            System.out.println(codeblock);
             char subsb = codeblock.charAt(1);
-            sb.append(subsb);
-//            System.out.println(subsb);
+            char device = codeblock.charAt(0);
+            //for devices
+            if(device == 'd'){//decimal device                
+                device = '0';
+                sb.append(device);
+            }
+            else if(device == 'h'){ //hex device
+                 device = '1';
+                 sb.append(device);
+            }
+            else if(device == 'a'){ //ascii device
+                device = '2';
+                sb.append(device);
+            }       
+            else
+                sb.append(subsb);
         }
-        
-        
-        //return 3 hex characters
-//        System.out.println(sb);
+
+        sb.append(" "); //space inbetween code blocks
         return sb;
     }
     
