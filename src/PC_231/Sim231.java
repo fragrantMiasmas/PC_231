@@ -20,54 +20,63 @@ public class Sim231 {
      return instr;
  }
    
+ public int char2int(char input){ //char to ascii
+         
+         int digit = (int) input;
+         if(digit >= 48 && digit <= 57)
+            digit = digit - 48; //only accounts for digits 0-9
+         else if(digit >= 65 && digit <= 90){
+             digit = digit - 55; //capitol letters
+         }
+         else
+             System.out.println("Out of range!");
+         return digit;
+    }   
  public void run(String instruction){ //two or three char instructions
      
         char input = instruction.charAt(0);
-        int r1 = instruction.charAt(1);
-        int aa = instruction.charAt(1);
-        int r2 = instruction.charAt(2);
-        int bb = instruction.charAt(2);
-        int nn = instruction.charAt(2);
-        int device= instruction.charAt(3); //last 2 chars
-        int a2 = instruction.charAt(2);
+        int secondHex = char2int(instruction.charAt(1));
+        int thirdHex = char2int(instruction.charAt(2));
+
         
         switch (input) {
             case '0':  ALU.Halt();
                      break;
-            case '1':  ALU.zero(r1);
+            case '1':  ALU.zero(secondHex);
                      break;
-            case '2': ALU.set(r1,bb);
+            case '2': ALU.set(secondHex,secondHex);
                      break;
-            case '3':  ALU.data(r1, bb);
+            case '3':  
+                     ALU.data(secondHex, thirdHex);
                      break;
-            case '4':  ALU.INC(r1,nn);
+            case '4':  ALU.INC(secondHex,thirdHex);
                      break;
-            case '5':  ALU.Shift(r1,nn);
+            case '5':  ALU.Shift(secondHex,thirdHex);
                      break;
-            case '6':  ALU.add(r1, r2);
+            case '6':  ALU.add(secondHex, thirdHex);
                      break;
-            case '7': ALU.sub(r1, r2);
+            case '7': ALU.sub(secondHex, thirdHex);
                      break;
-            case '8':  ALU.and(r1, r2);
+            case '8':  ALU.and(secondHex, thirdHex);
                      break;
-            case '9':  ALU.copy(r1, r2);
+            case '9':  ALU.copy(secondHex, thirdHex);
                      break;
-            case 'A': ALU.load(r1, r2);
+            case 'A': ALU.load(secondHex, thirdHex);
                      break;
-            case 'B': ALU.store(r1, r2);
+            case 'B': ALU.store(secondHex, thirdHex);
                      break;
-            case 'C': ALU.read(r1, device);
+            case 'C': ALU.read(secondHex, thirdHex);
                      break;
-            case 'D': ALU.write(r1, device);
+            case 'D': ALU.write(secondHex, thirdHex);
                      break;
-            case 'E': ALU.JPIF(r1, r1,r1);
+            case 'E': ALU.JPIF(secondHex, thirdHex, thirdHex);
                      break;
-            case 'F': ALU.jump(aa, a2);
+            case 'F': ALU.jump(secondHex, thirdHex);
                      break;
             default: System.out.println("Invalid input");;
                      break;
         }
-        System.out.println(input);
+//        System.out.println(instruction);
   
  }
       

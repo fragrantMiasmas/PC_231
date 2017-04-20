@@ -52,13 +52,17 @@ public class ALU {
     }
     
     //	Clears the data register DR, then sets its 8 lowest-order bits
-    public void data(int B1, int B2){
+    public int data(int B1, int B2){
         reg[B1] = 0; //clear
-//        int shiftedbit = reg[B1] >> 8;
-//        shiftedbit = shiftedbit << 8;
-        
-        // set 8 lowest order bits
+        // set 8 lowest order bits    sh
         int newbit = reg[B1]|B2;
+        reg[B1] = newbit;
+        
+        //making sure it's only 8 bits in case user input is larger
+        reg[B1] = reg[B1] << 28;
+        reg[B1] = reg[B1] >> 28;
+        System.out.println("Register " + B1 + " is set to " + reg[B1]);
+        return reg[B1];
     }
     
     //	Adds or subtracts from 1 to 8 from register RRRR
@@ -119,7 +123,6 @@ public class ALU {
     //  Reads a value (up to 12 bits) into register RRRR from device DDDD
     public void read(int RR, int Device){
         IOD.device(RR, Device);
-        System.out.println(RR);
     }
     
     //  Writes a value (up to 12 bits) from register RRRR to device DDDD

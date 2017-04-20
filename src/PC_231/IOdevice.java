@@ -5,6 +5,8 @@
  */
 package PC_231;
 
+import java.util.Scanner;
+
 /**
  *
  * @author ElizabethReed PC
@@ -13,16 +15,24 @@ public class IOdevice {
     
     //modes of output    
      public void device(int input, int device){
+         
+         Scanner kb = new Scanner(System.in);
         
          switch(device){
              case 0: //dd
-                 System.out.println(input);
+                 System.out.println("Please enter in a decimal number: ");
+                 int dec = kb.nextInt();
+                 System.out.println(dec);
                  break;
              case 1: //hd
-                 System.out.println(input);
+                 System.out.println("Please enter in a hex number: ");
+                 int hex = kb.nextInt();
+                 System.out.println(hex);
                  break;
              case 2: //ad
-                 char ascii = (char) input;
+                 System.out.println("Please enter in a character: ");
+                 String user_input = kb.next();
+                 char ascii = user_input.charAt(0);
                  System.out.println(ascii);
                  break;
              default: System.out.println("Not a valid input");

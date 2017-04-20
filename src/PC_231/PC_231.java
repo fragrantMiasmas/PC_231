@@ -16,8 +16,9 @@ public class PC_231 {
      */
     public static void main(String[] args) {
         
-//        Assembler asm = new Assembler();
-//        
+        Assembler asm = new Assembler();
+        Sim231 sim = new Sim231();
+        
 //        int bitmask = 0x000F;
 //        System.out.println("bitmask = " + bitmask);
 //        
@@ -33,13 +34,15 @@ public class PC_231 {
 //        
 //        int and4 = and>>>1;
 //        System.out.println(and4);
-//        
-//        //program below
-//        
+        
+        //program below
+        
 //        String instructions = "READ r0 d2";
 //        asm.assemble(instructions);
 
-           String input = "201 600 600";
+//           String input = "201 600 600";
+         String input = "302";
+         sim.run(input);
         
     }   
 }
