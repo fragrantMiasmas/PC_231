@@ -14,41 +14,40 @@ public class Assembler {
     
     //input instructions, output hex codes, use regex to parse
     
-    public String assemble(String instructions){
+    public void assemble(String instructions){
         StringBuilder sb = new StringBuilder();
-        //example input : READ r0,d2;  WRITE r1 d2
+        //example input : READ r0 d2;  WRITE r1 d2
        //whenever semicolon occurs, split
         for (String hexblock: instructions.split(";")) {
             System.out.println(hexblock);
-            StringBuilder subsb = parse(hexblock);
+            StringBuilder subsb = parseAlt(hexblock);
             sb.append(subsb);
         }
-        return sb.toString();
+        System.out.println(sb);
     }
     
-    public StringBuilder parse(String hexblock){ //parses blocks of 3, returns 3 characters
+    
+    public StringBuilder parseAlt(String hexblock){ //parses blocks of 3, returns 3 characters
         
         //example input : READ r0 d2
         StringBuilder sb = new StringBuilder();  
-        // \\s for spaces
-        // () for groups
-        Pattern p = Pattern.compile("(\\w{3,})\\s+(\\w{1}\\d{1})(\\s+|\\^wd)(\\w{1}\\d{1})");
-        Matcher m = p.matcher(hexblock);
-        System.out.println("group 2" + m.group(2));
-        String group1 = m.group(0);
-                
-        //first word returns the hex instruction
-        char hexcode1 = hex(group1);
+        //first work it READ
+        String[] hexinstr = hexblock.split(" ");  //encounter a space
+//            System.out.println(hexinstr);
+            char tableval = hex(hexinstr[0]); //read becomes c
+            sb.append(tableval);
+            
+             //register inputs ie r0,d2
+        for (String codeblock: hexinstr[1].split(",")) { //encounter a comma
+//            System.out.println(codeblock);
+            char subsb = codeblock.charAt(1);
+            sb.append(subsb);
+//            System.out.println(subsb);
+        }
         
-        //second chunck returns the second chracter which is a digit
-        String group2 = m.group(1);
-        char reg = group2.charAt(1);
         
-        //third chunck
-        String group3 = m.group(2);
-        char number = group2.charAt(1);
         //return 3 hex characters
-        System.out.println("");
+//        System.out.println(sb);
         return sb;
     }
     
@@ -88,7 +87,7 @@ public class Assembler {
                      break;
             case "jump" : hexcode = 'F';
                      break;
-            default: System.out.println("Invalid input");;
+            default: //System.out.println("Invalid input");
                      break;
         }
          return hexcode;

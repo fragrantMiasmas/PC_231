@@ -42,7 +42,10 @@ public class PC_231 {
 
 //           String input = "201 600 600";
          String input = "302";
-         sim.run(input);
+//         sim.run(input);
+
+         String instr = "READ r0,d2";
+         asm.assemble(instr);
         
     }   
 }
