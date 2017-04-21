@@ -13,13 +13,6 @@ public class Sim231 {
     
    ALU ALU = new ALU();
 
-   String str;
-   
- public String parse(String str){ //split into blocks of 3 chars
-     String instr = "some string";
-     return instr;
- }
-   
  public int char2int(char input){ //char to ascii
          
          int digit = (int) input;
@@ -32,8 +25,10 @@ public class Sim231 {
              System.out.println("Out of range!");
          return digit;
     }   
- public void run(String instruction){ //two or three char instructions
+ public void run(String instr){ //takes whole string and brakes it down by threes
      
+     System.out.println(instr);
+     for (String instruction : instr.split(" ")) { //differentiated by a space
         char input = instruction.charAt(0);
         int secondHex = char2int(instruction.charAt(1));
         int thirdHex = char2int(instruction.charAt(2));
@@ -76,6 +71,7 @@ public class Sim231 {
             default: System.out.println("Invalid input");;
                      break;
         }
+     }
 //        System.out.println(instruction);
   
  }

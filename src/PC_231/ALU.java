@@ -18,8 +18,8 @@ public class ALU {
     IOdevice IOD = new IOdevice();
     
     public int p2j(int i){ //convert pc-231 int to java int 
-        
-        (i >= 2048 ?-1:1) * (i%2048);
+//        
+//        (i >= 2048 ?-1:1) * (i%2048);
         int javaInt = 0; 
         javaInt = i | javaInt;
         return javaInt;
@@ -47,6 +47,7 @@ public class ALU {
         int shiftedbit = reg[RR] >> 4;
         shiftedbit = shiftedbit << 4; //shift it back left 4
         int newbit = shiftedbit|BB; //assign new value
+        System.out.println(newbit);
         return newbit;
         
     }
@@ -54,7 +55,7 @@ public class ALU {
     //	Clears the data register DR, then sets its 8 lowest-order bits
     public int data(int B1, int B2){
         reg[B1] = 0; //clear
-        // set 8 lowest order bits    sh
+        // set 8 lowest order bits    
         int newbit = reg[B1]|B2;
         reg[B1] = newbit;
         
@@ -70,12 +71,14 @@ public class ALU {
         int javaRR = p2j(reg[RR]);
         int javaNN = p2j(NN);
         reg[RR] = javaRR-javaNN;
+        System.out.println("Register " + RR + " is set to " + reg[RR]);
         return reg[RR];
     }
     
     //Shifts register RRRR left (-) or right (+) by from 1 to 8 bits
     public int Shift(int RR, int NN){
        reg[RR] = reg[RR] >> NN;
+       System.out.println("Register " + RR + " is set to " + reg[RR]);
        return reg[RR];
     }
     
@@ -85,6 +88,7 @@ public class ALU {
         int java2 = p2j(reg[R2]);
         int ans = j2p(java1 + java2);
         reg[R2] = ans;
+        System.out.println("Register " + R2 + " is set to " + reg[R2]);
         return reg[R2];
     }
     
@@ -94,12 +98,14 @@ public class ALU {
         int java2 = p2j(reg[R2]);
         int ans = j2p(java1 - java2);
         reg[R2] = ans;
+        System.out.println("Register " + R2 + " is set to " + reg[R2]);
         return reg[R2];
     }
     
     //	Logically ANDs the contents of register RRR1 into RRR2 (result in RRR2)
     public int and(int R1, int R2){      
        reg[R2] = reg[R1] & reg[R2];
+        System.out.println("Register " + R2 + " is set to " + reg[R2]);
        return reg[R2];
     }
     
@@ -122,12 +128,12 @@ public class ALU {
     
     //  Reads a value (up to 12 bits) into register RRRR from device DDDD
     public void read(int RR, int Device){
-        IOD.device(RR, Device);
+        IOD.device(Device);
     }
     
     //  Writes a value (up to 12 bits) from register RRRR to device DDDD
     public void write(int RR, int Device){
-        IOD.device(RR, Device);
+        IOD.device(Device);
     }
     
     public boolean nz(int i){

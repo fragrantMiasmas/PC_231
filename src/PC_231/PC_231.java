@@ -38,10 +38,11 @@ public class PC_231 {
         //program below
 
 //           String input = "201 600 600";
-         String input = "302";
-//         sim.run(input);
+         String input = "D00 D10 801";
+         sim.run(input);
 
-         String instr = "READ r0,dd; WRITE r0,hd; ADD r5,dd";
+//         String instr = "READ r0,dd; WRITE r0,hd; ADD r4,r5; JPIF r1,nzj2";
+         String instr = "READ r0,dd; WRITE r0,hd; ADD r4,r5";
          asm.assemble(instr);
         
     }   
